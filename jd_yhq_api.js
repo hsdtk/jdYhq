@@ -6,7 +6,7 @@ const $ = new Env('领取优惠券');
 //Node.js用户请在jdCookie.js处填写jdck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
-const apiList = $.isNode() ? require('./jd_yhq_api_list.js').apiList : [];
+const apiList = $.isNode() ? require('./jdYhqApiList.js').apiList : [];
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
 
