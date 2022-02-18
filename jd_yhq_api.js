@@ -1,33 +1,65 @@
-const $ = new Env('领取优惠券');
-
-
-//cron  55 0,1,6-23 * * *
+//tg群 https://t.me/+fQp6-4rbAE5lNjU1
+//cron  55 * * * *
+//如需增加自定义api请复制jdYhqApiList.js改名为jdYhqApiListMy.js删除里面的券重新添加
 //jd ck
-//Node.js用户请在jdCookie.js处填写jdck;
-const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notify = $.isNode() ? require('./sendNotify') : '';
-const apiList = $.isNode() ? require('./jdYhqApiList.js').apiList : [];
-//IOS等用户直接用NobyDa的jd cookie
-let cookiesArr = [], cookie = '';
 
-//下面参数可根据自己情况修改
+const $ = new Env('领取优惠券');
+const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+
+let apiList = $.isNode() ? require('./jdYhqApiList.js').apiList : [];
+let notify='';
+let jdNotify = true;//是否通知，false关闭通知推送，true打开通知推送
+try{
+    notify = $.isNode() ? require('./sendNotify') : '';
+}catch(e){
+    jdNotify=false;
+    console.log("未发现sendNotify.js文件不会进行通知！");
+}
+
+try{
+    //自定义api列表
+    const apiListMy = $.isNode() ? require('./jdYhqApiListMy.js').apiList : [];
+    if(apiListMy.length>0){
+        for(var alm in apiListMy){
+            if(apiListMy[alm].qName&&apiListMy[alm].qApi&&apiListMy[alm].qTime){
+                apiList.push(apiListMy[alm]);
+                console.log("加载自定义API:"+apiListMy[alm].qName);
+            }
+        }
+    }
+}catch(e){}
+//如需修改下面的值请增加环境变量 YHQ_API
 let tryNum=3;//券最大重试次数 每个账号尝试几次
-let maxQq=1;//每个整点最多抢几种类型的券
+let maxQq=2;//每个整点最多抢几种类型的券
 let maxXc=3;//最大线程数 maxQq如果大于1请缩小该值
 let qqjgTime=250;//抢券间隔 单位毫秒 请尽量不要低于200
-let maxAccount=8;//默认抢前多少个账号的券 不要大于10 除非你间隔设置大点 线程设置少点
-let jdNotify = true;//是否通知，false关闭通知推送，true打开通知推送
+let maxAccount=8;//默认抢前多少个账号的券 不要太大 除非你间隔设置大点 线程设置少点
 
 
 //下面参数不需要修改
+let cookiesArr = [], cookie = '';
 let canTaskFlag=[];//是否继续领取
 let TgCkArray=[];//需要跳过领取的ck
 let lqSucArray=[];//领取成功的账号
-let AllEendCode="|A9|A6|A14|D2|";//全部结束代码 A8还未开始 应该执行
+let AllEendCode="|A9|A6|A14|D2|";//全部结束代码
 let PEendCode="|A1|A13|A19|A26|A28|";//个人跳过
 let JDTimes=new Date().getTime();//JD时间
 let apiArray=[];//本次需要抢的优惠券
 let nowIndex=0;//当前运行数量
+let JDTimeJg=0;//京东时间与本地时间差
+
+//因为每次拉库会覆盖所有增加环境变量 不要修改上面的值了
+//环境变量名称为  YHQ_API
+//环境变量值为 3,2,3,250,8  五个值不能少英文逗号隔开 分别对应 重试次数,整点抢几种类型券,最大线程数,抢券间隔,默认抢前几个账号的券
+if(process.env.YHQ_API&&process.env.YHQ_API.indexOf(",")>-1&&process.env.YHQ_API.split(",").length>=5){
+	console.log("读取环境变量成功："+process.env.YHQ_API);
+	let YHQ_API_ARR=process.env.YHQ_API.split(",");
+	tryNum=parseInt(YHQ_API_ARR[0]);
+	maxQq=parseInt(YHQ_API_ARR[1]);
+	maxXc=parseInt(YHQ_API_ARR[2]);
+	qqjgTime=parseInt(YHQ_API_ARR[3]);
+	maxAccount=parseInt(YHQ_API_ARR[4]);
+}
 
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -44,10 +76,9 @@ if ($.isNode()) {
     return;
   }
  
-  let nextHour=nextHourF();//下一个整点时间
+  let nextHour=nextHourF();
   console.log("下次抢券时间："+nextHour+":00:00");
   for(var al in apiList){
-      //判断该优惠券是否需要抢
       if(checkYhq(apiList[al],nextHour)&&apiArray.length<maxQq){
           apiArray.push(apiList[al]);
           console.log("名称："+apiList[al].qName);
@@ -58,18 +89,45 @@ if ($.isNode()) {
      console.log('没有优惠券需要领取！');
      return;
   }
-  await getJDTime();
-  let xcTimes=jgNextHourF()+(new Date().getTime()-JDTimes)-100;//修正延迟
+  for(let jdTimeCs=0;jdTimeCs<3;jdTimeCs++){
+      await $.wait(3*1000);
+      await getJDTime();
+  }
+  console.log("京东时间与本地时间差为："+JDTimeJg+"毫秒");
+  let xcTimes=jgNextHourF()+JDTimeJg-120;//修正延迟
   if(xcTimes>30*60*1000){
-      console.log(parseInt(xcTimes/60/1000)+"分后才开始，时间设置错误或任务延迟时间过多！");
+      console.log(parseInt(xcTimes/60/1000)+"分后才开始，cron设置错误或手动运行！");
       return;
   }
-  if(xcTimes>0){//差距10分钟以上立即执行
+  if(xcTimes>0){
       console.log(parseInt(xcTimes/60/1000)+"分后开始任务，请不要结束任务！");
       await $.wait(xcTimes);
   }
-  for(let an in apiArray){//需要领取的优惠券
+  for(let an in apiArray){
       doAPIList(an);
+  }
+  //处理通知
+  await $.wait(30*1000);
+  for(let an in apiArray){
+	  let tips="";
+	  if(lqSucArray[an].length>0){
+		  if(apiArray[an].qName){
+			  tips+="\n券【"+apiArray[an].qName+"】";
+		  }
+		  tips+="成功领取的用户有：";
+		  for(var ii in lqSucArray[an]){
+			  cookie=cookiesArr[lqSucArray[an][ii]];
+			  let userName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
+			  tips+=`\n${lqSucArray[an][ii]+1}、${userName}`;
+			  
+		  }
+		  console.log("\n************************\n");
+		  console.log(tips);
+	  }
+	  if(jdNotify&&tips){
+	  	 await notify.sendNotify($.name, tips)
+		 tips="";
+	  }
   }
 })()
 	.catch((e) => {
@@ -81,11 +139,11 @@ if ($.isNode()) {
 
 async function doAPIList(an){
     canTaskFlag[an]=true;
-    TgCkArray[an]=[];//需要跳过领取的ck
-    lqSucArray[an]=[];//领取成功的账号
+    TgCkArray[an]=[];
+    lqSucArray[an]=[];
     //console.log("\n\n******开始领券【"+apiArray[an].qName+"】******");
     for(let cn=1;cn<=tryNum;cn++){
-      if(canTaskFlag[an]&&TgCkArray.length<cookiesArr.length){
+      if(canTaskFlag[an]&&TgCkArray[an].length<cookiesArr.length){
         console.log("\n\n***开始领券【"+apiArray[an].qName+"】第"+cn+"次请求***");
         for (let i = 0; i < cookiesArr.length&&i<maxAccount; i++) {
          if(canTaskFlag[an]){
@@ -100,13 +158,13 @@ async function doAPIList(an){
                    if(nowIndex%maxXc==0){
                       await $.wait(qqjgTime);
                   }else{
-                      //默认间隔20毫秒防止黑号
-                      await $.wait(20);
+                      //默认间隔30毫秒防止黑号
+                      await $.wait(30);
                   }
                 }
                nowIndex++;
                 //await doApiTask(an,i);//轮流请求账号
-               doApiTask(an,i);//同时多线程请求账号 慎用
+               doApiTask(an,i);//同时多线程请求账号
             }
          }else{
              console.log("该券已无或者无账号需要请求！"); 
@@ -117,25 +175,6 @@ async function doAPIList(an){
          break;
      }
   }
-  if(lqSucArray[an].length>0){
-      let tips="";
-      if(apiArray[an].qName){
-          tips+="券【"+apiArray[an].qName+"】";
-      }
-      tips+="成功领取的用户有：";
-      for(var ii in lqSucArray[an]){
-          cookie=cookiesArr[lqSucArray[an][ii]];
-          let userName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
-          tips+=`\n${userName}`;
-          
-      }
-      console.log("\n************************\n");
-      console.log(tips);
-      if(jdNotify){
-          await notify.sendNotify($.name, tips)
-      }
-  }
-
 }
 
 
@@ -154,16 +193,15 @@ function doApiTask(an,ckindex) {
                 console.log(`\n\n*${apiArray[an].qName}_【账号${ckindex+1}】${userName}*`);
                 data = JSON.parse(data);
                 let retMsg=data.subCodeMsg;
-                let subCode="|"+data.subCode+"|";
-                //A1成功 A8还未开始A13已领取 A19A28黑号 跳过 A9结束 A14今日没有 D2领取完 所有结束
+                let subCode="|"+data.subCode+"|";             
                 //console.log(subCode);
-                 if(data.subCode=="A1"){//领取成功
+                 if(data.subCode=="A1"){
                     lqSucArray[an].push(ckindex);
                 }
-                if(AllEendCode.indexOf(subCode)>-1){//活动结束
+                if(AllEendCode.indexOf(subCode)>-1){
                     canTaskFlag[an]=false;
                     console.log(timeFormat()+":"+retMsg);
-                }else if(PEendCode.indexOf(subCode)>-1){//领取成功
+                }else if(PEendCode.indexOf(subCode)>-1){
                     TgCkArray[an].push(ckindex);
                     console.log(timeFormat()+":"+retMsg);
                 }else{//继续
@@ -172,7 +210,7 @@ function doApiTask(an,ckindex) {
                 
             }
         } catch (e) {
-            TgCkArray[an].push(ckindex);//异常也跳过改账号
+            TgCkArray[an].push(ckindex);
             $.logErr(e, resp)
         } finally {
             resolve(data);
@@ -184,8 +222,8 @@ function doApiTask(an,ckindex) {
   })
 }
 function getJDTime(){
-    //{"currentTime":"2022-02-08 23:03:02","currentTime2":"1644332582990","returnMsg":"empty parameter ids","code":"0","subCode":"1-3"}
      return new Promise(resolve => {
+	  //let startQqStartT=new Date().getTime();
       $.post({url:"https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5"}, async (err, resp, data) => {
         try {
             if (err) {
@@ -193,8 +231,13 @@ function getJDTime(){
             } else {//请求成功
                 data = JSON.parse(data);
                 if(data.code=="0"){
-                    JDTimes=parseInt(data.currentTime2);
-                    console.log("获取JD时间成功："+data.currentTime+"与服务器时间差为："+(new Date().getTime()-JDTimes)+"毫秒");
+					//let postHsTime=(new Date().getTime()-startQqStartT);//请求耗时
+					//console.log("请求耗时："+postHsTime+"毫秒");
+					JDTimes=parseInt(data.currentTime2);
+                    //console.log("获取JD时间成功："+data.currentTime+"与服务器时间差为："+(new Date().getTime()-JDTimes)+"毫秒");
+                    if(JDTimeJg==0||(JDTimeJg!=0&&(new Date().getTime()-JDTimes)<JDTimeJg)){
+                        JDTimeJg=new Date().getTime()-JDTimes;
+                    }
                 }
             }
         } catch (e) {
@@ -206,10 +249,10 @@ function getJDTime(){
   
   })
 }
-//判断该券是否需要抢
 function checkYhq(entity,hour){
-    //活动未结束
-    if(entity.endDate&&(new Date(entity.endDate+" 23:59:59").getTime()>new Date().getTime())){
+    //没有时间直接返回true
+    if(!entity.endDate){return true;}
+    if(entity.endDate&&entity.qTime&&(new Date(entity.endDate+" 23:59:59").getTime()>new Date().getTime())){
         let qTimeArr=entity.qTime.split(",");
         if(qTimeArr.length>0&&qTimeArr.includes(hour+"")){
             return true;
@@ -230,7 +273,6 @@ function getApiUrl(an,ckindex) {
     }
   }
 }
-//计算距离下一次整点的时间间隔
 function jgNextHourF(){
   let newDate=timeFormat().substr(0,13)+":00:00";//计算当前整点时间
   let dataCurPar = Date.parse(new Date(newDate))+60*60*1000;//转换为时间戳+3600秒
