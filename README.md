@@ -4,7 +4,7 @@
 
 名称：随意自己能找到就行
 
-命令：ql repo https://gitee.com/cxtwg2/jdYhq.git "jd_" "" "^jd[^_]"
+命令：ql repo https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 定时规则： 25 19 * * *
 
