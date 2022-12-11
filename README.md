@@ -5,7 +5,10 @@
 名称：随意自己能找到就行
 
 命令：ql repo https://github.ruirui.fun/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
-
+或者这个地址
+ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+或
+ql repo https://hub.njuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 拉库失败的用这个不带代理地址试一试
 ql repo https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
