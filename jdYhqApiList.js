@@ -116,7 +116,7 @@ rsp/lps.jd.com等域名的get请求券名称带G
 let apiList=[ 
 {
         "qName": "全品1000-50",
-        "qTime": "14,18,20,21,22,23",//
+        "qTime": "14,16,18,20,21,22,23",//
         "lqSpace": 1,
 		"ckIndex": 0,
         "endDate":"2022-12-12",
