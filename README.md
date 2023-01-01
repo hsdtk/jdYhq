@@ -4,15 +4,11 @@
 
 名称：随意自己能找到就行
 
-命令：ql repo https://github.ruirui.fun/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+命令：ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 拉库失败的可以最后加上 "main" 例如：
 
-ql repo https://github.ruirui.fun/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]" "main"
-
-或者这个地址
-
-ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+ql repo ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]" "main"
 
 或
 
