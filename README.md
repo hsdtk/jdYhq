@@ -4,19 +4,19 @@
 
 名称：随意自己能找到就行
 
-命令：ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+命令：ql repo https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 拉库失败的可以最后加上 "main" 例如：
 
-ql repo ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]" "main"
+ql repo https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]" "main"
 
-或
+或代理地址
 
 ql repo https://hub.njuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
-拉库失败的用这个不带代理地址试一试
+或代理地址
 
-ql repo https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 定时规则： 29 19 * * *
 
