@@ -12,7 +12,7 @@ ql repo https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]" "main"
 
 或代理地址
 
-ql repo https://hub.njuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+ql repo https://gh.fakev.cn/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 或代理地址
 
