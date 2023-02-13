@@ -46,12 +46,6 @@
         "endDate":"2022-12-31",
         "qApi":"https://rsp.jd.com/coupon/receiveDayCoupon/v2?lt=m&an=plus.mobile&platform=3&eventId=MPlusCoupon_Get&eid=4MLKKICY5SALC7LJ7H3KIW7GVRDYMJ6RSJ4PJY6ACWPJIV2RL3FAUUW5W27NO6SOWVWTSAWUVPDFNTWYK2TEDSSJGE&fp=9430a47a403ff89cea3bcde389cf9b65&activityId=qyb_0933&_=1654178617554"
 },
-抢券提示很抱歉的可能是服务器ip黑了或者账号等因素
-api.m.jd.com域名的post请求券名称不需要带G 会自动带log请求
-rsp/lps.jd.com等域名的get请求券名称带G
-上面为注释不会抢如有需要复制到jdYhqApiListMy.js里 下面才是真正会抢的券 
-*/
-let apiList=[ 
 {
         "qName": "京喜299-30",
         "qTime": "0,10,15,20",//0,10,15,20
@@ -84,6 +78,13 @@ let apiList=[
         "endDate":"2023-02-28",
         "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%224P7TtgZ23cTUU3tpzqTGzNZrUY83%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3D0BE7083CE9CB8ACD6A202682E2F42C1B361F3B534606AED562480DCA722620560DD3EAAA24F1A12E41D3FEB530F18274_bingo%2CroleId%3DC75520B4ED3BA333F7FE69C7506F118A158D6EAD250B561B6619F3D5BE2ABA0AB0D68ED45745B6C5BEA8DEAA937A922BEA2749C67767542475F735417DAFFBADBC942B843EF8929148B07B7D753EC9295AA242D095F778134674151A0A9CC1B81BB49969B541950F5C42E31BA87107F133AA2056716B4F7C29527E2E6164D0A9F4EDA6880D90D6DDB68E19A945E198C0FBC44D079E0059439C08DC63DFFB8E05_bingo%2CstrengthenKey%3D19F512DCD8EE34ABE9C4FB4A92C2F42A6BD13A457F10B52A8D2F30302FCF387B_bingo%22%7D&client=wh5"
 },
+抢券提示很抱歉的可能是服务器ip黑了或者账号等因素
+api.m.jd.com域名的post请求券名称不需要带G 会自动带log请求
+rsp/lps.jd.com等域名的get请求券名称带G
+上面为注释不会抢如有需要复制到jdYhqApiListMy.js里 下面才是真正会抢的券 
+*/
+let apiList=[ 
+
 
 ];
 module.exports = {
