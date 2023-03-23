@@ -93,6 +93,30 @@ rsp/lps.jd.com等域名的get请求券名称带G
 */
 let apiList=[ 
 {
+        "qName": "硬盘199-20",
+        "qTime": "9,20",
+        "lqSpace": 1,
+		"ckIndex": 0,
+        "endDate":"2023-03-29",
+        "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%220%22%2C%22from%22%3A%22H5node%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3Dc1m9c9s0ocaf479c806caf9d1c565b7d%2CroleId%3D103257977%22%7D&client=wh5"
+},
+{
+        "qName": "硬盘299-30",
+        "qTime": "9,20",
+        "lqSpace": 1,
+		"ckIndex": 0,
+        "endDate":"2023-03-29",
+        "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%220%22%2C%22from%22%3A%22H5node%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3Dc4m0cbs3oba94d89bcca2692b6604ea5%2CroleId%3D103257981%22%7D&client=wh5"
+},
+{
+        "qName": "硬盘799-50",
+        "qTime": "9,20",
+        "lqSpace": 1,
+		"ckIndex": 0,
+        "endDate":"2023-03-29",
+        "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%220%22%2C%22from%22%3A%22H5node%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3Dc7m9cdsbobac431488c5335e68594d39%2CroleId%3D103257985%22%7D&client=wh5"
+},
+{
         "qName": "WD-40除锈剂1分",
         "qTime": "0,10,14,18,20",
         "lqSpace": 999,
