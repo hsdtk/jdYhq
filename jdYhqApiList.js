@@ -93,6 +93,14 @@ rsp/lps.jd.com等域名的get请求券名称带G
 */
 let apiList=[ 
 {
+        "qName": "1号店会员卡9元",
+        "qTime": "10",
+        "lqSpace": 1,
+		"ckIndex": 0,
+        "endDate":"2023-03-31",
+        "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%224SLvMz2isQNCSSdF8JuAZivTncPB%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3D6FD733E5DFDDD7FC150B6350B6624BFC97930F10456120BAF1D69B0C1C35C21E6567B2F4E530B8D91B95BAD0E4A57A96_bingo%2CroleId%3D59F1FBE77D3D5ABE1E90C9698306C91AFDEC670545C6E67E2C473E8EF6AB7D77E09EC50014153724695D54D840553374DF4A3F6D68F943671D56DE6178564445D3E23548259BBA49C937060CDF4D3F09356A8540520E609A5920164C947AEF1F368C6221389EF3F20109722692BF9A28B1C6B228B9D9B10304ADD83EC64DD9839D62D87B9E936F1E0CEB385DF508CDDC221DD7BFEAE91226F999AE6EC651AE61201B33646EF724C5FEA63AA8AF0DED52_bingo%2CstrengthenKey%3D16AC1C9F9C5A799B9F3AF3CF48BEE2ADA2831E619042C332ED9ECCC7B35C636FB2F91DEC91B8E7B67ABA69843F36BDC0_bingo%22%7D&client=wh5"
+},
+{
         "qName": "硬盘199-20",
         "qTime": "9,20",
         "lqSpace": 1,
@@ -116,15 +124,7 @@ let apiList=[
         "endDate":"2023-03-29",
         "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%220%22%2C%22from%22%3A%22H5node%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3Dc7m9cdsbobac431488c5335e68594d39%2CroleId%3D103257985%22%7D&client=wh5"
 },
-{
-        "qName": "WD-40除锈剂1分",
-        "qTime": "0,10,14,18,20",
-        "lqSpace": 1,
-		"ckIndex": 0,
-        "endDate":"2023-03-24",
-        "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%220%22%2C%22from%22%3A%22H5node%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3Dc9m2c1s9ocae45bea130a7a442504b3d%2CroleId%3D103107102%22%7D&client=wh5"
-},
- 
+
 ];
 module.exports = {
   apiList
