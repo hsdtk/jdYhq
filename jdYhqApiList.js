@@ -93,7 +93,7 @@ rsp/lps.jd.com等域名的get请求券名称带G
 */
 let apiList=[ 
 {
-        "qName": "60-50红牛",
+        "qName": "wd-40",
         "qTime": "0,10,14,18,20",
         "lqSpace":999,
 		"ckIndex": 0,
