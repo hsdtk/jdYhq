@@ -37,6 +37,15 @@ let apiList=[
         "endDate":"2023-12-31",
         "qApi":"https://rsp.jd.com/coupon/receiveDayCoupon/v2?lt=m&an=plus.mobile&platform=3&eventId=MPlusCoupon_Get&eid=PTLFZ7KPMK6CJWYTRLMA32NGOGMPD57I4UDJJ6MJJ5IJPECJONE6Y5U7WSQTP3MLG4E356J2QR3FEFPORIUAYPQAOE&fp=81d417f45a19cc4d16aaa58cc47e6297&activityId=qyb_0969&_=1668519499769"
 }
+,
+{
+        "qName": "plus105-5G",
+        "qTime":  "0,10,16,20,22",//时间段自己设置
+        "lqSpace": 1,
+		"ckIndex": 0,
+        "endDate":"2099-12-31",
+        "qApi":"https://api.m.jd.com/api?functionId=coupon_receiveDayCoupon_v2&loginType=2&loginWQBiz=&appid=plus_business&body=%7B%22platform%22%3A3%2C%22eventId%22%3A%22MPlusCoupon_Get%22%2C%22eid%22%3A%22ZTZNNSE6PQJWCVS5DIORLCJG7OKJKNSEPGWOOAFHAVLKMFBDABXW25BAMDEMRMD4PAOZGMNVHKMBHS64C6QJ2M7OQU%22%2C%22fp%22%3A%225d2eebfdb79fb4e44739c293e4e89d30%22%2C%22activityId%22%3A%22qyb_1002%22%7D&scval="
+}
 ];
 module.exports = {
   apiList
