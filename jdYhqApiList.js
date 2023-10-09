@@ -45,7 +45,6 @@ rsp/lps.jd.com等域名的get请求券名称带G
 上面为注释不会抢如有需要复制到jdYhqApiListMy.js里 下面才是真正会抢的券 
 */
 let apiList=[ 
-
 	{
 			"qName": "9-8商超",
 			"qTime": "0",
