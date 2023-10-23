@@ -52,8 +52,15 @@ let apiList=[
 			"ckIndex": 0,
 			"endDate":"2023-10-24",
 			"qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%220%22%2C%22from%22%3A%22H5node%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3Dc0mbcdseoda74422ab6da2cca96b0666%2CroleId%3D125834050%22%7D&client=wh5"
+	},
+	{
+			"qName": "厨具卫浴5折",
+			"qTime": "20",
+			"lqSpace": 999,
+			"ckIndex": 0,
+			"endDate":"2023-10-24",
+			"qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%220%22%2C%22from%22%3A%22H5node%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3Dccm6c4s4o0a04c849ea3c16f3dcd34a8%2CroleId%3D125786273%22%7D&client=wh5"
 	}
-	
 ];
 module.exports = {
   apiList
