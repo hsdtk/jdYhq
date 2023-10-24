@@ -12,7 +12,7 @@ ql repo https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]" "main"
 
 或代理地址
 
-ql repo https://gh.fakev.cn/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+ql repo https://ghproxy.com/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 或代理地址
 
@@ -65,7 +65,7 @@ ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 或者把jdYhqApiList-backup.js直接改名为jdYhqApiListMy.js 删除掉不要的券就可以
 
-五、如何监控商品库存（不监控不用加）？
+五、如何监控商品库存（不监控不用加，暂时接口被封不能用）？
 
 监控商品库存环境变量：
 
