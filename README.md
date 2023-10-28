@@ -56,7 +56,7 @@ ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 参数环境变量名称为 YHQ_NOWRUN
 
-参数环境变量值为  jdYhqApiList.js中qName 要一样且只能一个 跑完切记删除或禁用该环境变量 要不每次都跑
+参数环境变量值为  jdYhqApiList.js中qName 要一样且只能一个 跑完切记删除或禁用该环境变量 要不每次都跑 多个英文逗号分隔
 
 
 四、自定义如何添加API？
