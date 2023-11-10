@@ -12,11 +12,12 @@ ql repo https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]" "main"
 
 或代理地址
 
-ql repo https://ghproxy.com/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 或代理地址
 
-ql repo https://hub.yzuu.cf/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+ql repo https://ghproxy.com/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
+
 
 定时规则： 29 19 * * *
 
