@@ -57,22 +57,18 @@ ql repo https://ghfast.top/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 参数环境变量值为  jdYhqApiList.js中qName 要一样且只能一个 跑完切记删除或禁用该环境变量 要不每次都跑 多个英文逗号分隔
 
+3、代理
+
+参数环境变量名称为 YHQ_DL
+
+代理地址 http开头 非代理池模式 代理池取代理来不及
+
 
 四、自定义如何添加API？
 
 如需增加自定义api请复制jdYhqApiList.js改名为jdYhqApiListMy.js放于同一目录 然后修改新文件里面的券 注意会同时加载2个文件的券 所以请不要有重复的券
 
 或者把jdYhqApiList-backup.js直接改名为jdYhqApiListMy.js 删除掉不要的券就可以
-
-五、如何监控商品库存（不监控不用加，暂时接口被封不能用）？
-
-监控商品库存环境变量：
-
-TK_SIGN 激活码 请关注公众号cxt_wg回复“监控激活码”获取激活码
-
-STOCK_GOODS 监控商品Id多个用&符号分隔 不需监控了该值改为0
-
-STOCK_AREA 监控地区ID不设置默认江苏南京 示例12_904_3375或12-904-3375
 
 
 
