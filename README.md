@@ -23,7 +23,7 @@ ql repo https://ghfast.top/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 拉取成功后会新增2个任务 请不要修改定时 不要修改定时
 
-激活码环境变量名称为 YHQ_QL_SIGN 请添加微信cxtwg22回复”青龙“查看如何获取
+激活码环境变量名称为 YHQ_QL_SIGN
 
 
 二、增加配置环境变量（不修改参数不需要增加）
@@ -34,24 +34,24 @@ ql repo https://ghfast.top/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 六个值不能少请自己修改，英文逗号隔开分别对应： 
 
-重试次数,整点抢几种类型券,最大线程数,抢券间隔毫秒,默认抢前几个账号的券,提前多少毫秒
+重试次数,整点抢几种类型,最大线程数,间隔毫秒,默认抢前几个账号的,提前多少毫秒
 
 
 三、其他环境变量（不需要则不用增加）
 
-1、排除不需要抢的优惠券
+1、排除不需要抢的
 
 参数环境变量名称为  YHQ_REMOVE
 
 参数环境变量值为 jdYhqApiList.js中qName 不要双引号多个用英文逗号隔开
 
-如果值设置为all则不抢jdYhqApiList.js中的优惠券 只会抢自定义优惠券
+如果值设置为all则不抢jdYhqApiList.js中的 只会抢自定义
 
-例如： 极速15-5,极速10-2
+例如：
 
-2、立即执行券
+2、立即执行
 
-作用：用于账号批量领券
+作用：用于账号批量测试
 
 参数环境变量名称为 YHQ_NOWRUN
 
@@ -66,9 +66,9 @@ ql repo https://ghfast.top/https://github.com/hsdtk/jdYhq.git "jd_" "" "^jd[^_]"
 
 四、自定义如何添加API？
 
-如需增加自定义api请复制jdYhqApiList.js改名为jdYhqApiListMy.js放于同一目录 然后修改新文件里面的券 注意会同时加载2个文件的券 所以请不要有重复的券
+如需增加自定义api请复制jdYhqApiList.js改名为jdYhqApiListMy.js放于同一目录 然后修改新文件里面 注意会同时加载2个文件 所以请不要有重复的
 
-或者把jdYhqApiList-backup.js直接改名为jdYhqApiListMy.js 删除掉不要的券就可以
+或者把jdYhqApiList-backup.js直接改名为jdYhqApiListMy.js 删除掉不要的就可以
 
 
 
